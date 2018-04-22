@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Home</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list-header *ngIf="list.length == 0">
+    No hay elementos para mostrar.
+  </ion-list-header>
+
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Estirar para actualizar"
+      refreshingSpinner="circles"
+      refreshingText="Refrescando...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <ion-list>
+    <ion-item *ngFor="let item of list">
+      <p>{{ item.id }} - {{ item.name }}</p>
+      <h3>{{ item.username }}</h3>
+      <p>{{ item.address.street }} - {{ item.address.suite }}</p>
+    </ion-item>
+  </ion-list>
+</ion-content>
